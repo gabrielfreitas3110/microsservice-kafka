@@ -19,16 +19,18 @@ public class StringProducerService {
     private String topicName;
 
     public void sendMessage(String message) {
-        kafkaTemplate.send(topicName, message).addCallback(
-                success -> {
-                    if(Objects.nonNull(success)) {
-                        log.info("Send message with success {}.", message);
-                        log.info("Partition {}. Offset {}.",
-                                success.getRecordMetadata().partition(),
-                                success.getRecordMetadata().offset());
-                    }
-                },
-                error -> log.error("Erro send message.")
-        );
+        log.info("\nSend message: \n{}.", message);
+        kafkaTemplate.send(topicName, message);
+                //.addCallback(
+                //        success -> {
+                //            if(Objects.nonNull(success)) {
+                //                log.info("Send message with success {}.", message);
+                //                log.info("Partition {}. Offset {}.",
+                //                        success.getRecordMetadata().partition(),
+                //                        success.getRecordMetadata().offset());
+                //            }
+                //        },
+                //        error -> log.error("Erro send message.")
+                //);
     }
 }
