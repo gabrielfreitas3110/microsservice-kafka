@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class PaymentControllerImpl implements PaymentController {
 
     @Autowired
-    private PaymentService paymentService
+    private PaymentService paymentService;
 
     @Override
     public ResponseEntity<Payment> paymentSave(Payment payment) {
