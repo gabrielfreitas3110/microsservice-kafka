@@ -2,6 +2,7 @@ package com.example.paymentservice.config;
 
 import org.apache.kafka.clients.admin.AdminClientConfig;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,6 +17,9 @@ public class KafkaAdminConfig {
     @Autowired
     private KafkaProperties properties;
 
+    @Value("${topic.name}")
+    private String topicName;
+
     @Bean
     public KafkaAdmin kafkaAdmin() {
         var configs = new HashMap<String, Object>();
@@ -26,7 +30,7 @@ public class KafkaAdminConfig {
     @Bean
     public KafkaAdmin.NewTopics newTopics() {
         return new KafkaAdmin.NewTopics(
-                TopicBuilder.name("${topic.name}").partitions(1).build()
+                TopicBuilder.name(topicName).partitions(1).build()
         );
     }
 }
