@@ -35,7 +35,7 @@ services:
       KAFKA_BROKERCONNECT: kafka:29092
 
   payment:
-    image: gabrielfreitas3110/payment-service:1.0.1
+    image: gabrielfreitas3110/payment:1.0.1
     networks:
       - broker-kafka
     depends_on:
@@ -44,7 +44,6 @@ services:
       - "8000:8000"
     environment:
       KAFKA_HOST: kafka:29092
-      TOPIC_NAME: payment-topic
 
   consumer:
     image: gabrielfreitas3110/json-consumer:1.0.1
@@ -55,7 +54,6 @@ services:
       - payment
     environment:
       KAFKA_HOST: kafka:29092
-      TOPIC_NAME: payment-topic
 
 
 networks:

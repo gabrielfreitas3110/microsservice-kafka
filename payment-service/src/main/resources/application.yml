@@ -3,4 +3,4 @@ server:
 spring:
   kafka:
     bootstrap-servers: ${KAFKA_HOST:localhost:29092}
-topic.name: ${TOPIC_NAME:payment-topic}
+topic.name: payment-topic
